@@ -1,47 +1,69 @@
-public class ReportGenerator {
-    // Member Variables For The Report Generator
-    private int weekNumber;
-    private double food;
-    private double vehicle;
-    private double water;
-    private double waste;
-    private double electricity;
-    private double total;
+public class BudgetChecker {
+    //Member Variables To Check If The User Is Within Budget
+    private boolean isWithinBudget;
+    private double difference;
 
-    // Parametised Constructor For The Report Generator
-    public ReportGenerator(
-        int weekNumber,
-        double food,
-        double vehicle,
-        double water,
-        double waste,
-        double electricity,
-        double total
-    ){
-        this.weekNumber = weekNumber;
-        this.food = food;
-        this.vehicle = vehicle;
-        this.water = water;
-        this.waste = waste;
-        this.electricity = electricity;
-        this.total = total;
+    //Parametised Constructor To Check If The User Is Within Budget
+    public BudgetChecker(boolean isWithinBudget, double difference){
+        this.isWithinBudget = isWithinBudget;
+        this.difference = difference;
     }
 
-    //Essential Getters To Retrieve the Report For A Specified Week
-    public int getWeekNumber(){
-        return weekNumber;
-    }
-    public double getTotal(){
-        return total;
+    //Method To Check If The User Is Within Budget
+    public boolean withinBudget(double totalEmissions, double budget){
+        System.out.println("Your total emissions for the week were " + totalEmissions + "kg.");
+        System.out.println("Your budget for the week was " + budget + "kg.");
+
+        if (totalEmissions < budget){
+            isWithinBudget = true;
+            System.out.println("You were withing budget for this week.");
+
+        } else {
+            isWithinBudget = false;
+            difference = totalEmissions - budget;
+            System.out.println("You were NOT within your budget for this week.");
+            System.out.println("You exceeded our budget for this week by " + difference + "kg.");
+        }
+        
+        return isWithinBudget;
     }
 
-    //Method To Print Out The Final Report Of The User
-    public void printFinalReport(){
-        System.out.println("This is your report for Week " + weekNumber + "\n" +
-        "Food Emissions: " + food + "\n" +
-        "Vehicle Emissions: " + vehicle + "\n" +
-        "Water Emissions: " + water + "\n" + 
-        "Waste Emissions: " + waste + "\n" +
-        "Electricity Emissions: " + electricity);
+    //Getter To Check If The User Is Within Budget
+    public boolean getIsWithinBudget(){
+        return isWithinBudget;
+    }
+}public class BudgetChecker {
+    //Member Variables To Check If The User Is Within Budget
+    private boolean isWithinBudget;
+    private double difference;
+
+    //Parametised Constructor To Check If The User Is Within Budget
+    public BudgetChecker(boolean isWithinBudget, double difference){
+        this.isWithinBudget = isWithinBudget;
+        this.difference = difference;
+    }
+
+    //Method To Check If The User Is Within Budget
+    public boolean withinBudget(double totalEmissions, double budget){
+        System.out.println("Your total emissions for the week were " + totalEmissions + "kg.");
+        System.out.println("Your budget for the week was " + budget + "kg.");
+
+        if (totalEmissions < budget){
+            isWithinBudget = true;
+            System.out.println("You were withing budget for this week.");
+
+        } else {
+            isWithinBudget = false;
+            difference = totalEmissions - budget;
+            System.out.println("You were NOT within your budget for this week.");
+            System.out.println("You exceeded our budget for this week by " + difference + "kg.");
+        }
+        
+        return isWithinBudget;
+    }
+
+    //Getter To Check If The User Is Within Budget
+    public boolean getIsWithinBudget(){
+        return isWithinBudget;
     }
 }
