@@ -1,0 +1,34 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.TreeMap;
+
+public class ReportGenerator{
+    private TreeMap<Integer, String> allReports = new TreeMap<>();
+
+    private TreeMap<Integer, WeeklyReport> reportObjects = new TreeMap<>();
+
+    public void addReport(int weekNumber, String filename, WeeklyReport report){
+        allReports.put(weekNumber, filename);
+        reportObjects.put(weekNumber, report);
+    }
+
+    public void generateReport(int weekNumber){
+        if (reportObjects.containsKey(weekNumber)){
+            reportObjects.get(weekNumber).printFinalReport();
+
+            String filename = allReports.get(weekNumber);
+            
+            try (BufferedReader reader = new BufferedReader(new FileReader(filename))){
+                String line;
+                while((line = reader.readLine() != null)){
+                    System.out.println(line);
+                }
+            } catch (IOException e){
+                System.out.println("Error reading report: " + e.getMessage());
+            }
+        } else {
+            System.out.println("No report found for week: " + weekNumber);
+        }
+    }
+}
